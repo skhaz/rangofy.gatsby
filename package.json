@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "gatsby": "^2.6.0",
-    "gatsby-plugin-netlify-headers": "^1.0.1",
+    "mapbox-gl": "^1.0.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-mapbox-gl": "^4.4.0"
   },
   "devDependencies": {
     "prettier": "^1.17.1"
