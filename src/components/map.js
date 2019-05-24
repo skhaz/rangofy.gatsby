@@ -13,7 +13,7 @@ export default function Map({ options, onMount, className }) {
 
           if (accuracy < 20000) {
             map.setCenter({ lat, lng })
-            map.setZoom(15)
+            map.setZoom(12)
           }
         },
         error => {},
