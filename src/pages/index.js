@@ -1,17 +1,33 @@
 import React, { useCallback } from "react"
+import { graphql } from "gatsby"
+
 import Div100vh from "react-div-100vh"
 
 import Map from "../components/map.js"
 
-export default () => {
-  const addMarkers = links => map => {
-    links.forEach((link, index) => {
-      const marker = new window.google.maps.Marker({
-        map,
-        position: link.coords,
-        label: `${index + 1}`,
-        title: link.title,
-      })
+export const query = graphql`
+  {
+    allPlaces {
+      edges {
+        node {
+          title
+          position {
+            lat
+            lng
+          }
+        }
+      }
+    }
+  }
+`
+
+export default props => {
+  const { allPlaces } = props.data
+
+  const addMarkers = places => map => {
+    places.edges.map(({ node }) => {
+      const { title, position } = node
+      const marker = new window.google.maps.Marker({ map, position, title })
       marker.addListener("click", () => {})
     })
   }
@@ -27,7 +43,7 @@ export default () => {
       zoom: 6,
     },
 
-    onMount: addMarkers([]),
+    onMount: addMarkers(allPlaces),
   }
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
