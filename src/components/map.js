@@ -16,7 +16,7 @@ export default function Map({ options, onMount, className }) {
             map.setZoom(13)
           }
         },
-        error => { },
+        error => {},
         {
           enableHighAccuracy: true,
           timeout: 5000,
