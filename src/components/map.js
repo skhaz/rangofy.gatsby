@@ -9,18 +9,17 @@ export default function Map({ options, onMount, className }) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
-          const location = new window.google.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          )
-          map.setCenter(location)
+          const { accuracy, latitude, longitude } = position.coords
+          console.log(accuracy)
+          map.setCenter(new window.google.maps.LatLng(latitude, longitude))
           map.setZoom(13)
-          console.log(location)
         },
-        error => {
-          alert(error)
-        },
-        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: true }
+        ignored => {},
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        }
       )
     }
 
