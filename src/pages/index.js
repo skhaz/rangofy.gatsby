@@ -18,14 +18,13 @@ export default () => {
 
   const mapProps = {
     options: {
-      disableDefaultUI: true,
-      zoomControl: true,
-      zoom: 5,
-      gestureHandling: "greedy",
       center: {
         lat: -23.533773,
         lng: -46.62529,
       },
+      disableDefaultUI: true,
+      gestureHandling: "greedy",
+      zoom: 6,
     },
 
     onMount: addMarkers([]),
