@@ -9,10 +9,10 @@ export default function Map({ options, onMount, className }) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
-          const { accuracy, latitude, longitude } = position.coords
+          const { accuracy, latitude: lat, longitude: lng } = position.coords
 
           if (accuracy < 10000) {
-            map.setCenter(new window.google.maps.LatLng(latitude, longitude))
+            map.setCenter({ lat, lng })
             map.setZoom(13)
           }
         },
