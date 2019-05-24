@@ -21,6 +21,7 @@ export default () => {
       disableDefaultUI: true,
       zoomControl: true,
       zoom: 5,
+      gestureHandling: 'greedy',
       center: {
         lat: -23.533773,
         lng: -46.62529,

@@ -40,19 +40,9 @@ export default function Map({ options, onMount, className }) {
       const headScript = document.getElementsByTagName("script")[0]
       headScript.parentNode.insertBefore(script, headScript)
       script.addEventListener("load", handleLoad)
-
-      let vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty("--vh", `${vh}px`)
-
-      window.addEventListener("resize", () => {
-        // We execute the same script as before
-        let vh = window.innerHeight * 0.01
-        document.documentElement.style.setProperty("--vh", `${vh}px`)
-      })
-
       return () => script.removeEventListener("load", handleLoad)
     }
   })
 
-  return <div {...props} style={{ height: "100vh" }} />
+  return <div {...props} style={{ height: "100%" }} />
 }
