@@ -1,10 +1,28 @@
 import React, { useEffect, useRef } from "react"
 
-export default ({ options, onMount, className }) => {
+export default function Map({ options, onMount, className }) {
   const props = { ref: useRef(), className }
 
   const handleComplete = () => {
     const map = new window.google.maps.Map(props.ref.current, options)
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const location = new window.google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+          map.setCenter(location)
+          map.setZoom(13)
+          console.log(location)
+        },
+        error => {
+          alert(error)
+        },
+        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: true }
+      )
+    }
 
     onMount && onMount(map)
   }
