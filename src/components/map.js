@@ -4,7 +4,7 @@ export default function Map({ options, onMount, className }) {
   const props = { ref: useRef(), className }
 
   const handleLoad = () => {
-    const map = new window.google.maps.Map(props.ref.current, options)
+    const inner = new window.google.maps.Map(props.ref.current, options)
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -12,8 +12,8 @@ export default function Map({ options, onMount, className }) {
           const { accuracy, latitude: lat, longitude: lng } = position.coords
 
           if (accuracy < 20000) {
-            map.setCenter({ lat, lng })
-            map.setZoom(12)
+            inner.setCenter({ lat, lng })
+            inner.setZoom(12)
           }
         },
         error => {},
@@ -25,7 +25,7 @@ export default function Map({ options, onMount, className }) {
       )
     }
 
-    onMount && onMount(map)
+    onMount && onMount(inner)
   }
 
   useEffect(() => {
@@ -40,6 +40,16 @@ export default function Map({ options, onMount, className }) {
       const headScript = document.getElementsByTagName("script")[0]
       headScript.parentNode.insertBefore(script, headScript)
       script.addEventListener("load", handleLoad)
+
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty("--vh", `${vh}px`)
+
+      window.addEventListener("resize", () => {
+        // We execute the same script as before
+        let vh = window.innerHeight * 0.01
+        document.documentElement.style.setProperty("--vh", `${vh}px`)
+      })
+
       return () => script.removeEventListener("load", handleLoad)
     }
   })

@@ -1,4 +1,5 @@
 import React, { useCallback } from "react"
+import Div100vh from "react-div-100vh"
 
 import Map from "../components/map.js"
 
@@ -20,7 +21,10 @@ export default () => {
       disableDefaultUI: true,
       zoomControl: true,
       zoom: 5,
-      center: { lat: -23.533773, lng: -46.62529 },
+      center: {
+        lat: -23.533773,
+        lng: -46.62529,
+      },
     },
 
     onMount: addMarkers([]),
@@ -28,5 +32,5 @@ export default () => {
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
-  return <>{MemoMap}</>
+  return <Div100vh>{MemoMap}</Div100vh>
 }
