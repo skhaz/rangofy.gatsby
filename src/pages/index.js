@@ -28,7 +28,7 @@ export default props => {
     places.edges.map(({ node }) => {
       const { title, position } = node
       const marker = new window.google.maps.Marker({ map, position, title })
-      marker.addListener("click", () => {})
+      marker.addListener("click", (e) => { alert(e) })
     })
   }
 
