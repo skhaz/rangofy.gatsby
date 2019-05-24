@@ -28,7 +28,7 @@ export default () => {
     options: {
       disableDefaultUI: true,
       zoomControl: true,
-      zoom: 4,
+      zoom: 5,
       center: { lat: -23.533773, lng: -46.62529 },
     },
 
