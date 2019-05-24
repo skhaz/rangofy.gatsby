@@ -14,8 +14,8 @@ export default function Map({ options, onMount, className }) {
       const script = document.createElement("script")
       script.type = "text/javascript"
       script.src =
-        `https://maps.google.com/maps/api/js?key=` +
-        process.env.GOOGLE_MAPS_API_KEY
+        `https://maps.google.com/maps/api/js?key=AIzaSyA3rUroV_dcTe0VC5bUYp6v5sAP3p29WIg` /* +
+        process.env.GOOGLE_MAPS_API_KEY */
       const headScript = document.getElementsByTagName("script")[0]
       headScript.parentNode.insertBefore(script, headScript)
       script.addEventListener("load", handleComplete)
