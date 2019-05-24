@@ -11,9 +11,9 @@ export default function Map({ options, onMount, className }) {
         position => {
           const { accuracy, latitude: lat, longitude: lng } = position.coords
 
-          if (accuracy < 10000) {
+          if (accuracy < 20000) {
             map.setCenter({ lat, lng })
-            map.setZoom(13)
+            map.setZoom(15)
           }
         },
         error => {},
