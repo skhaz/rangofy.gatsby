@@ -8,11 +8,17 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "bootstrap": "3.4.1",
+    "bootstrap-sass": "^3.4.1",
+    "bootswatch": "3.4.1",
     "gatsby": "^2.6.0",
+    "gatsby-plugin-sass": "^2.0.11",
     "gatsby-source-apiserver": "^2.1.1",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-div-100vh": "^0.3.4",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-jsonschema-form": "^1.5.0"
   },
   "devDependencies": {
     "prettier": "^1.17.1"

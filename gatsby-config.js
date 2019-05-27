@@ -7,5 +7,8 @@ module.exports = {
         url: process.env.GATSBY_PLACES_API,
       },
     },
+    {
+      resolve: "gatsby-plugin-sass",
+    },
   ],
 }
