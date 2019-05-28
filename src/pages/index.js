@@ -32,12 +32,6 @@ export default props => {
     setMarkers(markers)
   }
 
-  const clearMarkers = () => {
-    markers.forEach(marker => {
-      marker.setMap(null)
-    })
-  }
-
   const mapProps = {
     options: {
       center: {
