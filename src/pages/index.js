@@ -24,9 +24,19 @@ export default props => {
 
   const [markers, setMarkers] = useState([])
 
+  const handleClick = marker => {
+    console.log(marker)
+  }
+
   const addMarkers = places => map => {
-    const markers = places.map(({ position }) => {
-      return new window.google.maps.Marker({ map, position })
+    const { maps } = window.google
+
+    const markers = places.map(({ name, position }) => {
+      const marker = new maps.Marker({ map, position, data: { name } })
+      maps.event.addListener(marker, "click", () => {
+        handleClick(marker.data)
+      })
+      return marker
     })
 
     setMarkers(markers)
