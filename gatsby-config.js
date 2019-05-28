@@ -3,9 +3,9 @@ module.exports = {
     {
       resolve: "gatsby-source-graphql",
       options: {
-        fieldName: "query",
+        fieldName: "remote",
         typeName: "Place",
-        url: "https://us-central1-fifteenner.cloudfunctions.net/gql",
+        url: process.env.GATSBY_PLACES_GQL,
       },
     },
     "gatsby-plugin-react-helmet",

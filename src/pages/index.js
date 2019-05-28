@@ -7,7 +7,7 @@ import Map from "../components/map.js"
 
 export const query = graphql`
   {
-    query {
+    remote {
       places {
         name
         position {
@@ -20,7 +20,7 @@ export const query = graphql`
 `
 
 export default props => {
-  const { query } = props.data
+  const { remote } = props.data
 
   const addMarkers = places => map => {
     const { maps } = window.google
@@ -43,7 +43,7 @@ export default props => {
       zoom: 6,
     },
 
-    onMount: addMarkers(query.places),
+    onMount: addMarkers(remote.places),
   }
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
