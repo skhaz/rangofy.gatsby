@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback } from "react"
 import { graphql } from "gatsby"
 
 import Div100vh from "react-div-100vh"
@@ -22,24 +22,14 @@ export const query = graphql`
 export default props => {
   const { query } = props.data
 
-  const [markers, setMarkers] = useState([])
-
-  const handleClick = marker => {
-    console.log(marker)
-  }
-
   const addMarkers = places => map => {
     const { maps } = window.google
 
-    const markers = places.map(({ name, position }) => {
-      const marker = new maps.Marker({ map, position, data: { name } })
-      maps.event.addListener(marker, "click", () => {
-        handleClick(marker.data)
-      })
-      return marker
-    })
+    places.forEach(({ name, position }) => {
+      const marker = new maps.Marker({ map, position, name })
 
-    setMarkers(markers)
+      maps.event.addListener(marker, "click", () => {})
+    })
   }
 
   const mapProps = {
