@@ -117,7 +117,10 @@ export default () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>My Title 2</title>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet"></link>
+        <link
+          href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css"
+          rel="stylesheet"
+        />
       </Helmet>
       <Form
         schema={schema}

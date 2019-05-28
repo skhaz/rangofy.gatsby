@@ -1,14 +1,14 @@
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-source-apiserver",
+      resolve: "gatsby-source-graphql",
       options: {
-        name: "places",
-        url: process.env.GATSBY_PLACES_API,
+        fieldName: "query",
+        typeName: "Place",
+        url: "https://us-central1-fifteenner.cloudfunctions.net/gql",
       },
     },
-    {
-      resolve: "gatsby-plugin-react-helmet",
-    }
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-netlify",
   ],
 }
