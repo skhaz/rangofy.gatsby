@@ -32,10 +32,29 @@ const profileSchema = {
 const workdaySchema = {
   type: "object",
   properties: {
-    email: {
+    workday: {
       type: "string",
-      format: "email",
-      title: "E-mail1111",
+      title: "Day of the week",
+      enum: [
+        "All",
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+    },
+    start: {
+      type: "string",
+      format: "datetime",
+      title: "Start",
+    },
+    end: {
+      type: "string",
+      format: "datetime",
+      title: "End",
     },
   },
 }
@@ -71,7 +90,7 @@ const placeSchema = {
         format: "data-url",
       },
     },
-    places: {
+    workdays: {
       title: "Workdays",
       type: "array",
       items: workdaySchema,
