@@ -71,7 +71,6 @@ const placeSchema = {
         format: "data-url",
       },
     },
-
     places: {
       title: "Workdays",
       type: "array",
