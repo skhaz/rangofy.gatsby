@@ -2,132 +2,110 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Form from "react-jsonschema-form"
 
-const schema = {
-  title: "Schema dependencies",
-  description: "These samples are best viewed without live validation.",
+const profileSchema = {
+  title: "Contact",
   type: "object",
   properties: {
-    simple: {
-      src:
-        "https://spacetelescope.github.io/understanding-json-schema/reference/object.html#dependencies",
-      title: "Simple",
-      type: "object",
-      properties: {
-        name: {
-          type: "string",
-        },
-        credit_card: {
-          type: "number",
-        },
-      },
-      required: ["name"],
-      dependencies: {
-        credit_card: {
-          properties: {
-            billing_address: {
-              type: "string",
-            },
-          },
-          required: ["billing_address"],
-        },
-      },
+    email: {
+      type: "string",
+      format: "email",
+      title: "E-mail",
     },
-    conditional: {
-      title: "Conditional",
-      $ref: "#/definitions/person",
+    url: {
+      type: "string",
+      format: "uri",
+      title: "Website",
     },
-    arrayOfConditionals: {
-      title: "Array of conditionals",
-      type: "array",
-      items: {
-        $ref: "#/definitions/person",
-      },
+    telephone: {
+      type: "string",
+      title: "Telephone",
+      minLength: 10,
     },
-    fixedArrayOfConditionals: {
-      title: "Fixed array of conditionals",
-      type: "array",
-      items: [
-        {
-          title: "Primary person",
-          $ref: "#/definitions/person",
-        },
-      ],
-      additionalItems: {
-        title: "Additional person",
-        $ref: "#/definitions/person",
-      },
-    },
-  },
-  definitions: {
-    person: {
-      title: "Person",
-      type: "object",
-      properties: {
-        "Do you have any pets?": {
-          type: "string",
-          enum: ["No", "Yes: One", "Yes: More than one"],
-          default: "No",
-        },
-      },
-      required: ["Do you have any pets?"],
-      dependencies: {
-        "Do you have any pets?": {
-          oneOf: [
-            {
-              properties: {
-                "Do you have any pets?": {
-                  enum: ["No"],
-                },
-              },
-            },
-            {
-              properties: {
-                "Do you have any pets?": {
-                  enum: ["Yes: One"],
-                },
-                "How old is your pet?": {
-                  type: "number",
-                },
-              },
-              required: ["How old is your pet?"],
-            },
-            {
-              properties: {
-                "Do you have any pets?": {
-                  enum: ["Yes: More than one"],
-                },
-                "Do you want to get rid of any?": {
-                  type: "boolean",
-                },
-              },
-              required: ["Do you want to get rid of any?"],
-            },
-          ],
-        },
-      },
+    whatsapp: {
+      type: "boolean",
+      title: "Whatsapp?",
+      default: false,
     },
   },
 }
 
-const log = type => console.log.bind(console, type)
+const workdaySchema = {
+  type: "object",
+  properties: {
+    email: {
+      type: "string",
+      format: "email",
+      title: "E-mail1111",
+    },
+  },
+}
+
+const placeSchema = {
+  type: "object",
+  title: "New place",
+  properties: {
+    name: {
+      type: "string",
+      title: "Name",
+    },
+    address: {
+      type: "string",
+      title: "Address",
+    },
+    mobile: {
+      type: "boolean",
+      title: "Mobile?",
+      default: false,
+    },
+    cover: {
+      type: "string",
+      format: "data-url",
+      title: "Cover",
+    },
+    photos: {
+      type: "array",
+      format: "uri",
+      title: "Photos",
+      items: {
+        type: "string",
+        format: "data-url",
+      },
+    },
+
+    places: {
+      title: "Workdays",
+      type: "array",
+      items: workdaySchema,
+    },
+  },
+}
+
+const mainSchema = {
+  title: "Registration",
+  type: "object",
+  properties: {
+    profileSchema,
+    places: {
+      title: "Places",
+      type: "array",
+      items: placeSchema,
+    },
+  },
+}
+
+const uiSchema = {}
+
+const theme =
+  "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css"
 
 export default () => {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
-        <title>My Title 2</title>
-        <link
-          href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css"
-          rel="stylesheet"
-        />
+        <link href={theme} rel="stylesheet" />
       </Helmet>
-      <Form
-        schema={schema}
-        onChange={log("changed")}
-        onSubmit={log("submitted")}
-        onError={log("errors")}
-      />
+
+      <Form schema={mainSchema} uiSchema={uiSchema} />
     </>
   )
 }
