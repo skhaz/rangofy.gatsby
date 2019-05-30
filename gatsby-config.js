@@ -8,7 +8,6 @@ module.exports = {
         url: process.env.GATSBY_PLACES_GQL,
       },
     },
-    "gatsby-plugin-react-helmet",
     "gatsby-plugin-netlify",
   ],
 }
