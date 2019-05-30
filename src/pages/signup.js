@@ -2,33 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Form from "react-jsonschema-form"
 
-const profileSchema = {
-  title: "Contact",
-  type: "object",
-  properties: {
-    email: {
-      type: "string",
-      format: "email",
-      title: "E-mail",
-    },
-    url: {
-      type: "string",
-      format: "uri",
-      title: "Website",
-    },
-    telephone: {
-      type: "string",
-      title: "Telephone",
-      minLength: 10,
-    },
-    whatsapp: {
-      type: "boolean",
-      title: "Whatsapp?",
-      default: false,
-    },
-  },
-}
-
+/*
 const workdaySchema = {
   type: "object",
   properties: {
@@ -48,65 +22,97 @@ const workdaySchema = {
     },
     start: {
       type: "string",
-      format: "datetime",
+      format: "date-time",
       title: "Start",
     },
     end: {
       type: "string",
-      format: "datetime",
+      format: "date-time",
       title: "End",
     },
   },
 }
-
-const placeSchema = {
-  type: "object",
-  title: "New place",
-  properties: {
-    name: {
-      type: "string",
-      title: "Name",
-    },
-    address: {
-      type: "string",
-      title: "Address",
-    },
-    mobile: {
-      type: "boolean",
-      title: "Mobile?",
-      default: false,
-    },
-    cover: {
-      type: "string",
-      format: "data-url",
-      title: "Cover",
-    },
-    photos: {
-      type: "array",
-      format: "uri",
-      title: "Photos",
-      items: {
-        type: "string",
-        format: "data-url",
-      },
-    },
-    workdays: {
-      title: "Workdays",
-      type: "array",
-      items: workdaySchema,
-    },
-  },
-}
-
+*/
 const mainSchema = {
   title: "Registration",
   type: "object",
   properties: {
-    profileSchema,
+    profile: {
+      title: "Contact",
+      type: "object",
+      properties: {
+        email: {
+          type: "string",
+          format: "email",
+          title: "E-mail",
+        },
+        url: {
+          type: "string",
+          format: "uri",
+          title: "Website",
+        },
+        telephone: {
+          type: "string",
+          title: "Telephone",
+          minLength: 10,
+        },
+        whatsapp: {
+          type: "boolean",
+          title: "Whatsapp?",
+          default: false,
+        },
+      },
+    },
     places: {
       title: "Places",
       type: "array",
-      items: placeSchema,
+      items: {
+        type: "object",
+        title: "New place",
+        properties: {
+          name: {
+            type: "string",
+            title: "Name",
+          },
+          address: {
+            type: "string",
+            title: "Address",
+          },
+          mobile: {
+            type: "boolean",
+            title: "Mobile?",
+            default: false,
+          },
+          cover: {
+            type: "string",
+            format: "data-url",
+            title: "Cover",
+          },
+          photos: {
+            type: "array",
+            format: "uri",
+            title: "Photos",
+            items: {
+              type: "string",
+              format: "data-url",
+            },
+          },
+          sunday: {
+            type: "object",
+            title: "Sunday",
+            properties: {
+              from: {
+                type: "number",
+                title: "From",
+              },
+              to: {
+                type: "number",
+                title: "To",
+              }
+            }
+          },
+        },
+      },
     },
   },
 }
@@ -123,7 +129,14 @@ export default () => {
         <link href={theme} rel="stylesheet" />
       </Helmet>
 
-      <Form schema={mainSchema} uiSchema={uiSchema} />
+      <Form
+        schema={mainSchema}
+        uiSchema={uiSchema}
+        onSubmit={({ formData }, event) => {
+          console.log("submitted formData", formData)
+          console.log("submit event", event)
+        }}
+      />
     </>
   )
 }
