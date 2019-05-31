@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Div100vh from "react-div-100vh"
 
 import Map from "../components/map.js"
+import Carousel from "../components/carousel.js"
 
 export const query = graphql`
   {
@@ -48,5 +49,10 @@ export default props => {
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
-  return <Div100vh>{MemoMap}</Div100vh>
+  return (
+    <Div100vh>
+      {MemoMap}
+      <Carousel />
+    </Div100vh>
+  )
 }
