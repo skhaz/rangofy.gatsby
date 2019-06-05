@@ -1,11 +1,10 @@
 {
   "private": true,
   "scripts": {
+    "clean": "rimraf .firebase .cache build",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve"
+    "format": "prettier --write '*.{js,json}' 'src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "gatsby": "^2.6.0",
