@@ -1,6 +1,13 @@
 import React, { useState } from "react"
 import Carousel from "nuka-carousel"
-import Slide from "./slide"
+
+const Slide = ({ value, changeMe }) => {
+  return (
+    <div style={{ backgroundColor: "red", width: "100px" }}>
+      <h1 onClick={() => changeMe(value)}>slide</h1>
+    </div>
+  )
+}
 
 export default () => {
   const [index, setIndex] = useState(0)
