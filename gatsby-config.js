@@ -31,5 +31,12 @@ module.exports = {
         display: "standalone",
       },
     },
+    {
+      resolve: `gatsby-plugin-root-import`,
+      options: {
+        ['~']: `${__dirname}/src`,
+        pages: `${__dirname}/src/pages`,
+      },
+    },
   ],
 }

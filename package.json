@@ -11,13 +11,6 @@
     "@material-ui/icons": "^4.0.1",
     "@material-ui/styles": "^4.0.2",
     "gatsby": "~2.8.5",
-    "gatsby-plugin-manifest": "^2.1.1",
-    "gatsby-plugin-material-ui": "^2.0.1",
-    "gatsby-plugin-netlify": "^2.0.17",
-    "gatsby-plugin-offline": "^2.1.1",
-    "gatsby-plugin-react-helmet": "^3.0.12",
-    "gatsby-plugin-web-font-loader": "^1.0.4",
-    "gatsby-source-graphql": "^2.0.18",
     "nuka-carousel": "^4.5.8",
     "react": "^16.8.6",
     "react-div-100vh": "^0.3.4",
@@ -26,6 +19,14 @@
     "styled-components": "~4.3.0"
   },
   "devDependencies": {
+    "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-material-ui": "^2.0.1",
+    "gatsby-plugin-netlify": "^2.0.17",
+    "gatsby-plugin-offline": "^2.1.1",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-source-graphql": "^2.0.18",
     "prettier": "^1.17.1",
     "rimraf": "^2.6.3"
   }

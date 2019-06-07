@@ -1,8 +1,8 @@
 import React, { useCallback } from "react"
 import { graphql } from "gatsby"
-import Container from "../components/container.js"
-import Map from "../components/map.js"
-import Carousel from "../components/carousel.js"
+import Container from "~/components/container"
+import Map from "~/components/map"
+import Carousel from "~/components/carousel"
 
 export const query = graphql`
   {
