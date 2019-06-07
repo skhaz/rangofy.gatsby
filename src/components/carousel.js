@@ -28,13 +28,6 @@ export default () => {
       slidesToShow={3}
       zoomScale={0.85}
       slideIndex={index}
-      {/*
-      beforeSlide={slideIndex => console.log("beforeSlide", slideIndex)}
-      afterSlide={slideIndex => {
-        console.log("afterSlide", slideIndex)
-        setIndex(slideIndex)
-      }}
-    */}
     >
       {slides &&
         slides.map((index, value) => (

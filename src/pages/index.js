@@ -1,8 +1,6 @@
 import React, { useCallback } from "react"
 import { graphql } from "gatsby"
-
-import Div100vh from "react-div-100vh"
-
+import Container from "../components/container.js"
 import Map from "../components/map.js"
 import Carousel from "../components/carousel.js"
 
@@ -50,9 +48,9 @@ export default props => {
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
   return (
-    <Div100vh>
+    <Container>
       {MemoMap}
       <Carousel />
-    </Div100vh>
+    </Container>
   )
 }
