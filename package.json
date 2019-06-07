@@ -16,7 +16,7 @@
     "react-div-100vh": "^0.3.4",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "styled-components": "~4.3.0"
+    "styled-components": "~4.3.1"
   },
   "devDependencies": {
     "gatsby-plugin-manifest": "^2.1.1",
@@ -27,7 +27,7 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-graphql": "^2.0.18",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }
 }
