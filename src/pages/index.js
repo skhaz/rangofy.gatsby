@@ -47,10 +47,12 @@ export default props => {
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
+  const MemoCarousel = useCallback(<Carousel />, [])
+
   return (
     <Container>
       {MemoMap}
-      <Carousel />
+      {MemoCarousel}
     </Container>
   )
 }
