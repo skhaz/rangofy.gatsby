@@ -19,7 +19,7 @@ export const query = graphql`
 `
 
 export default props => {
-  const { remote } = props.data
+  const { places } = props.data.remote
 
   const addMarkers = places => map => {
     const { maps } = window.google
@@ -42,12 +42,24 @@ export default props => {
       zoom: 6,
     },
 
-    onMount: addMarkers(remote.places),
+    onMount: addMarkers(places),
   }
 
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
-  const MemoCarousel = useCallback(<Carousel />, [])
+  const MemoCarousel = useCallback(
+    <div
+      style={{
+        position: "absolute",
+        left: 60,
+        bottom: 30,
+        right: 60,
+      }}
+    >
+      <Carousel places={places} />
+    </div>,
+    []
+  )
 
   return (
     <Container>

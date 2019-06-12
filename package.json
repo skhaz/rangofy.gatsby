@@ -11,11 +11,12 @@
     "@material-ui/icons": "^4.0.1",
     "@material-ui/styles": "^4.0.2",
     "gatsby": "~2.8.5",
-    "nuka-carousel": "^4.5.8",
     "react": "^16.8.6",
     "react-div-100vh": "^0.3.4",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
+    "react-slick": "^0.24.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "~4.3.1"
   },
   "devDependencies": {
@@ -25,8 +26,13 @@
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-plugin-sharp": "^2.1.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-remark-images-contentful": "^2.0.13",
+    "gatsby-source-contentful": "^2.0.70",
     "gatsby-source-graphql": "^2.0.18",
+    "gatsby-transformer-sharp": "^2.1.21",
+    "gatsby-transformer-sqip": "^2.0.41",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }

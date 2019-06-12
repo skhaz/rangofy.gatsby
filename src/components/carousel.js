@@ -1,78 +1,128 @@
-import React, { useState } from "react"
-import Carousel from "nuka-carousel"
+import React from "react"
+import styled from "styled-components"
+import Slider from "react-slick"
 
-import { makeStyles } from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card"
-import CardActionArea from "@material-ui/core/CardActionArea"
-import CardContent from "@material-ui/core/CardContent"
-import CardMedia from "@material-ui/core/CardMedia"
-import Typography from "@material-ui/core/Typography"
+const SlideItem = props => {
+  const { name, image } = props.item
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-})
+  const Thumbnail = styled.img`
+    width: 100%;
+    border-radius: 5px;
+    margin: 0;
+  `
 
-const Slide = ({ value, changeMe }) => {
-  const classes = useStyles()
+  const Caption = styled.span`
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-family: monospace;
+    padding: 3px;
+    text-align: center;
+  `
+
+  const Wrapper = styled.div`
+    box-sizing: border-box;
+    position: relative;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  `
 
   return (
-    <Card onClick={() => changeMe(value)} className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <Wrapper>
+      <Thumbnail alt={name} src={image} />
+      <Caption>{name}</Caption>
+    </Wrapper>
   )
 }
 
-export default () => {
-  const [index, setIndex] = useState(0)
+export default props => {
+  // const { places } = props
 
-  const [slides, setSlides] = useState([1, 2, 3, 4, 5, 6, 7, 8])
+  const items = [
+    {
+      image: "https://i.imgur.com/kHbYaF9.jpg",
+      name: "Camera",
+      key: "1",
+    },
+    {
+      image: "https://i.imgur.com/WTWwrhM.jpg",
+      name: "Tomato",
+      key: "2",
+    },
+    /*
+    {
+      image: "https://i.imgur.com/JOL6DG1.jpg",
+      name: "Coffee",
+      key: 3
+    },
+*/
+    {
+      image: "https://i.imgur.com/TaKE8RQ.jpg",
+      name: "Salad",
+      key: "4",
+    },
+
+    {
+      image: "https://i.imgur.com/EwB1EG0.jpg",
+      name: "Star",
+      key: "5",
+    },
+
+    {
+      image: "https://i.imgur.com/R5kIKjN.jpg",
+      name: "Bicyclet",
+      key: "6",
+    },
+    /*
+    {
+      image: "https://i.imgur.com/pdSaFk6.jpg",
+      name: "Plant",
+      key: 7
+    },
+    */
+    {
+      image: "https://i.imgur.com/NPd4MJd.jpg",
+      name: "Hamburger",
+      key: "8",
+    },
+    {
+      image: "https://i.imgur.com/IeBUq2X.jpg",
+      name: "Honey",
+      key: "9",
+    },
+    {
+      image: "https://i.imgur.com/fExK5EE.jpg",
+      name: "Mushroom",
+      key: "10",
+    },
+    {
+      image: "https://i.imgur.com/PBEZcVZ.jpg",
+      name: "Hats",
+      key: "12",
+    },
+    {
+      image: "https://i.imgur.com/ApTUwqP.jpg",
+      name: "Breakfast",
+      key: "13",
+    },
+  ]
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 666,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+  }
 
   return (
-    <Carousel
-      swiping
-      withoutControls
-      style={{
-        bottom: 0,
-        left: 0,
-        right: 0,
-        position: "absolute",
-      }}
-      cellAlign="center"
-      slideWidth="345px"
-      cellSpacing={30}
-      slidesToShow={8}
-      slideIndex={index}
-    >
-      {slides &&
-        slides.map((index, value) => (
-          <Slide
-            key={`slide-${index}`}
-            value={value}
-            changeMe={i => {
-              setIndex(i)
-            }}
-          />
-        ))}
-    </Carousel>
+    <Slider {...settings}>
+      {items.map((item, index) => (
+        <SlideItem key={index} item={item} />
+      ))}
+    </Slider>
   )
 }
