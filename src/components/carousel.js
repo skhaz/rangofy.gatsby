@@ -20,6 +20,8 @@ const SlideItem = props => {
     color: #fff;
     font-family: monospace;
     padding: 3px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     text-align: center;
   `
 
@@ -111,11 +113,10 @@ export default props => {
   ]
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
-    speed: 666,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 2,
+    slidesToScroll: 2,
   }
 
   return (
