@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Slider from "react-slick"
 
 const SlideItem = props => {
   const { name, image } = props.item
 
-  const Thumbnail = styled.img`
+  const Image = styled.img`
     width: 100%;
     border-radius: 5px;
     margin: 0;
@@ -34,7 +34,7 @@ const SlideItem = props => {
 
   return (
     <Wrapper>
-      <Thumbnail alt={name} src={image} />
+      <Image alt={name} src={image} />
       <Caption>{name}</Caption>
     </Wrapper>
   )
@@ -112,18 +112,46 @@ export default props => {
     },
   ]
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+  const [numberOfSlides, setNumberOfSlides] = useState(null)
+
+  function windowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window
+    return {
+      width,
+      height,
+    }
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      const { width } = windowDimensions()
+
+      setNumberOfSlides(parseInt(width / 240, 10))
+    }
+
+    handleResize()
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   return (
-    <Slider {...settings}>
-      {items.map((item, index) => (
-        <SlideItem key={index} item={item} />
-      ))}
-    </Slider>
+    <>
+      {numberOfSlides && (
+        <Slider
+          infinite
+          dots
+          slidesToShow={numberOfSlides}
+          slidesToScroll={numberOfSlides}
+        >
+          {items.map((item, index) => (
+            <SlideItem key={index} item={item} />
+          ))}
+        </Slider>
+      )}
+    </>
   )
 }

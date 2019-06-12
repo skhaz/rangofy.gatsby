@@ -51,9 +51,9 @@ export default props => {
     <div
       style={{
         position: "absolute",
-        left: 32,
-        bottom: 38,
-        right: 32,
+        left: 38,
+        bottom: 42,
+        right: 38,
       }}
     >
       <Carousel places={places} />
