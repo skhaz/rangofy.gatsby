@@ -47,68 +47,42 @@ export default props => {
     {
       image: "https://i.imgur.com/kHbYaF9.jpg",
       name: "Camera",
-      key: "1",
     },
     {
       image: "https://i.imgur.com/WTWwrhM.jpg",
       name: "Tomato",
-      key: "2",
     },
-    /*
-    {
-      image: "https://i.imgur.com/JOL6DG1.jpg",
-      name: "Coffee",
-      key: 3
-    },
-*/
     {
       image: "https://i.imgur.com/TaKE8RQ.jpg",
       name: "Salad",
-      key: "4",
     },
-
     {
       image: "https://i.imgur.com/EwB1EG0.jpg",
       name: "Star",
-      key: "5",
     },
-
     {
       image: "https://i.imgur.com/R5kIKjN.jpg",
       name: "Bicyclet",
-      key: "6",
     },
-    /*
-    {
-      image: "https://i.imgur.com/pdSaFk6.jpg",
-      name: "Plant",
-      key: 7
-    },
-    */
     {
       image: "https://i.imgur.com/NPd4MJd.jpg",
       name: "Hamburger",
-      key: "8",
     },
     {
       image: "https://i.imgur.com/IeBUq2X.jpg",
       name: "Honey",
-      key: "9",
     },
     {
       image: "https://i.imgur.com/fExK5EE.jpg",
       name: "Mushroom",
-      key: "10",
     },
     {
       image: "https://i.imgur.com/PBEZcVZ.jpg",
       name: "Hats",
-      key: "12",
     },
     {
       image: "https://i.imgur.com/ApTUwqP.jpg",
       name: "Breakfast",
-      key: "13",
     },
   ]
 
@@ -142,8 +116,8 @@ export default props => {
     <>
       {numberOfSlides && (
         <Slider
-          infinite
-          dots
+          infinite={false}
+          dots={false}
           slidesToShow={numberOfSlides}
           slidesToScroll={numberOfSlides}
         >
