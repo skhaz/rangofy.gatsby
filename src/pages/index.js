@@ -31,17 +31,163 @@ export default props => {
     })
   }
 
-
   const styles = [
     {
-      featureType: "water",
-      elementType: "geometry",
+      featureType: "all",
+      elementType: "labels.text.fill",
       stylers: [
         {
-          color: "#e9e9e9",
+          saturation: 36,
+        },
+        {
+          color: "#000000",
+        },
+        {
+          lightness: 40,
+        },
+      ],
+    },
+    {
+      featureType: "all",
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          visibility: "on",
+        },
+        {
+          color: "#000000",
+        },
+        {
+          lightness: 16,
+        },
+      ],
+    },
+    {
+      featureType: "all",
+      elementType: "labels.icon",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "administrative",
+      elementType: "geometry.fill",
+      stylers: [
+        {
+          color: "#000000",
+        },
+        {
+          lightness: 20,
+        },
+      ],
+    },
+    {
+      featureType: "administrative",
+      elementType: "geometry.stroke",
+      stylers: [
+        {
+          color: "#000000",
         },
         {
           lightness: 17,
+        },
+        {
+          weight: 1.2,
+        },
+      ],
+    },
+    {
+      featureType: "administrative",
+      elementType: "labels",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.country",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.country",
+      elementType: "geometry",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.country",
+      elementType: "labels.text",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.province",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.locality",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+        {
+          saturation: "-100",
+        },
+        {
+          lightness: "30",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.neighborhood",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "administrative.land_parcel",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "simplified",
+        },
+        {
+          gamma: "0.00",
+        },
+        {
+          lightness: "74",
         },
       ],
     },
@@ -50,10 +196,49 @@ export default props => {
       elementType: "geometry",
       stylers: [
         {
-          color: "#f5f5f5",
+          color: "#34334f",
         },
         {
-          lightness: 20,
+          lightness: "-37",
+        },
+      ],
+    },
+    {
+      featureType: "landscape.man_made",
+      elementType: "all",
+      stylers: [
+        {
+          lightness: "3",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [
+        {
+          color: "#000000",
+        },
+        {
+          lightness: 21,
+        },
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [
+        {
+          visibility: "simplified",
         },
       ],
     },
@@ -62,10 +247,10 @@ export default props => {
       elementType: "geometry.fill",
       stylers: [
         {
-          color: "#ffffff",
+          color: "#2d2c45",
         },
         {
-          lightness: 17,
+          lightness: "0",
         },
       ],
     },
@@ -74,7 +259,7 @@ export default props => {
       elementType: "geometry.stroke",
       stylers: [
         {
-          color: "#ffffff",
+          color: "#000000",
         },
         {
           lightness: 29,
@@ -85,14 +270,62 @@ export default props => {
       ],
     },
     {
+      featureType: "road.highway",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#7d7c9b",
+        },
+        {
+          lightness: "43",
+        },
+      ],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
       featureType: "road.arterial",
       elementType: "geometry",
       stylers: [
         {
-          color: "#ffffff",
+          color: "#2d2c45",
         },
         {
-          lightness: 18,
+          lightness: "1",
+        },
+      ],
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "labels.text",
+      stylers: [
+        {
+          visibility: "on",
+        },
+      ],
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "labels.text.fill",
+      stylers: [
+        {
+          color: "#7d7c9b",
+        },
+      ],
+    },
+    {
+      featureType: "road.arterial",
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          visibility: "off",
         },
       ],
     },
@@ -101,67 +334,43 @@ export default props => {
       elementType: "geometry",
       stylers: [
         {
-          color: "#ffffff",
+          color: "#2d2c45",
         },
         {
-          lightness: 16,
+          lightness: "-1",
+        },
+        {
+          gamma: "1",
         },
       ],
     },
     {
-      featureType: "poi",
-      elementType: "geometry",
-      stylers: [
-        {
-          color: "#f5f5f5",
-        },
-        {
-          lightness: 21,
-        },
-      ],
-    },
-    {
-      featureType: "poi.park",
-      elementType: "geometry",
-      stylers: [
-        {
-          color: "#dedede",
-        },
-        {
-          lightness: 21,
-        },
-      ],
-    },
-    {
-      elementType: "labels.text.stroke",
+      featureType: "road.local",
+      elementType: "labels.text",
       stylers: [
         {
           visibility: "on",
         },
         {
-          color: "#ffffff",
-        },
-        {
-          lightness: 16,
+          hue: "#ff0000",
         },
       ],
     },
     {
+      featureType: "road.local",
       elementType: "labels.text.fill",
       stylers: [
         {
-          saturation: 36,
+          color: "#7d7c9b",
         },
         {
-          color: "#333333",
-        },
-        {
-          lightness: 40,
+          lightness: "-31",
         },
       ],
     },
     {
-      elementType: "labels.icon",
+      featureType: "road.local",
+      elementType: "labels.text.stroke",
       stylers: [
         {
           visibility: "off",
@@ -173,37 +382,34 @@ export default props => {
       elementType: "geometry",
       stylers: [
         {
-          color: "#f2f2f2",
+          color: "#2d2c45",
         },
         {
-          lightness: 19,
-        },
-      ],
-    },
-    {
-      featureType: "administrative",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#fefefe",
-        },
-        {
-          lightness: 20,
+          lightness: "-36",
         },
       ],
     },
     {
-      featureType: "administrative",
-      elementType: "geometry.stroke",
+      featureType: "water",
+      elementType: "geometry",
       stylers: [
         {
-          color: "#fefefe",
+          color: "#2d2c45",
         },
         {
-          lightness: 17,
+          lightness: "0",
         },
         {
-          weight: 1.2,
+          gamma: "1",
+        },
+      ],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.stroke",
+      stylers: [
+        {
+          visibility: "off",
         },
       ],
     },
@@ -218,7 +424,7 @@ export default props => {
       disableDefaultUI: true,
       gestureHandling: "greedy",
       zoom: 6,
-      styles
+      styles,
     },
 
     onMount: addMarkers(places),
