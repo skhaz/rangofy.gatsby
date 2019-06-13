@@ -10,6 +10,8 @@ export default () => {
 
   const auth = firebase.auth()
 
+  const firestore = firebase.firestore()
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setSignedIn(!!user)
@@ -22,7 +24,7 @@ export default () => {
 
   const renderUnauthorized = () => <SignIn firebase={firebase} auth={auth} />
 
-  const renderEditor = () => <Form firebase={firebase} />
+  const renderEditor = () => <Form firestore={firestore} />
 
   return (
     <>
