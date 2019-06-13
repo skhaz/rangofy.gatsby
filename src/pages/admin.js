@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/styles"
 import { createMuiTheme } from "@material-ui/core/styles"
 import { deepPurple, deepOrange } from "@material-ui/core/colors"
 import { initFirebase, FirebaseContext } from "~/providers/firebase"
-import Form from "~/components/form"
+import Admin from "~/components/admin"
 
 export default () => {
   const [firebase, setFirebase] = useState()
@@ -34,7 +34,7 @@ export default () => {
       <CssBaseline />
       {firebase && (
         <FirebaseContext.Provider value={firebase}>
-          <Form />
+          <Admin />
         </FirebaseContext.Provider>
       )}
     </ThemeProvider>
