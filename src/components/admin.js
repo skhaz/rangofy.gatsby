@@ -20,7 +20,7 @@ export default () => {
     }
   }, [])
 
-  const renderUnauthorized = () => <SignIn auth={auth} />
+  const renderUnauthorized = () => <SignIn firebase={firebase} auth={auth} />
 
   const renderEditor = () => <Form firebase={firebase} />
 

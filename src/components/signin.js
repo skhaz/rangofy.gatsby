@@ -1,6 +1,7 @@
+import React from "react"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
-export default ({ auth }) => {
+export default ({ firebase, auth }) => {
   const uiConfig = {
     signInFlow: "popup",
 
