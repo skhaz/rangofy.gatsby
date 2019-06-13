@@ -11,7 +11,7 @@ export default function Map({ options, onMount, className }) {
         position => {
           const { accuracy, latitude: lat, longitude: lng } = position.coords
 
-          if (accuracy < 30000) {
+          if (accuracy < 50000) {
             inner.setCenter({ lat, lng })
             inner.setZoom(11)
           }
@@ -30,17 +30,21 @@ export default function Map({ options, onMount, className }) {
 
   useEffect(() => {
     if (window.google) {
-      handleLoad()
-    } else {
-      const script = document.createElement("script")
-      script.type = "text/javascript"
-      script.src =
-        `https://maps.google.com/maps/api/js?key=` +
-        process.env.GATSBY_MAPS_API_KEY
-      const headScript = document.getElementsByTagName("script")[0]
-      headScript.parentNode.insertBefore(script, headScript)
-      script.addEventListener("load", handleLoad)
-      return () => script.removeEventListener("load", handleLoad)
+      return handleLoad()
+    }
+
+    const script = document.createElement("script")
+    script.type = "text/javascript"
+    script.src =
+      `https://maps.google.com/maps/api/js?key=` +
+      process.env.GATSBY_MAPS_API_KEY
+
+    const headScript = document.getElementsByTagName("script")[0]
+    headScript.parentNode.insertBefore(script, headScript)
+    script.addEventListener("load", handleLoad)
+
+    return () => {
+      script.removeEventListener("load", handleLoad)
     }
   })
 
