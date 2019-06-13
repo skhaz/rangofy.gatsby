@@ -6,13 +6,13 @@ import { useCollection } from "react-firebase-hooks/firestore"
 
 export default ({ firestore }) => {
   console.log(firestore)
-  const [values, loading, error] = useCollection(firestore.collection("places"))
+  const [result, loading, error] = useCollection(firestore.collection("places"))
 
   return (
     <>
       {loading === false && (
         <div style={{ width: "100%" }}>
-          {values.docs.map(doc => (
+          {result.docs.map(doc => (
             <h1 key={doc.id}>{doc.data().name}</h1>
           ))}
 
