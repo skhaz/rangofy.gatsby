@@ -93,7 +93,7 @@ export default ({ firestore }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     const docRef = firestore.doc(`places/${uid}`)
     await docRef.update(values)
-    setSubmitting(false)
+    setTimeout(() => setSubmitting(false), 200);
   }
 
   return (
