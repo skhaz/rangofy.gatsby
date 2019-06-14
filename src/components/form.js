@@ -45,6 +45,7 @@ const Profile = props => {
       <TextField
         fullWidth
         name="name"
+        label="Name"
         margin="normal"
         onChange={handleChange}
         onBlur={handleBlur}
@@ -53,6 +54,7 @@ const Profile = props => {
       <TextField
         fullWidth
         name="mobile"
+        label="Mobile"
         margin="normal"
         onChange={handleChange}
         onBlur={handleBlur}
@@ -60,8 +62,8 @@ const Profile = props => {
       />
       <FormControlLabel
         name="whatsapp"
-        control={<Checkbox checked={values.whatsapp} />}
         label="WhatsApp?"
+        control={<Checkbox checked={values.whatsapp} />}
         onChange={handleChange}
         onBlur={handleBlur}
       />
@@ -69,11 +71,12 @@ const Profile = props => {
         fullWidth
         disabled={isSubmitting}
         variant="contained"
+        color="primary"
         type="submit"
       >
         Submit
       </Button>
-      <pre>{/*JSON.stringify(props, null, 2)*/}</pre>
+      <pre>{JSON.stringify(props, null, 2)}</pre>
     </form>
   )
 }
