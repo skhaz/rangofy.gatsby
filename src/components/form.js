@@ -1,42 +1,110 @@
 import React from "react"
-import Box from "@material-ui/core/Box"
+import { makeStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import Checkbox from "@material-ui/core/Checkbox"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Paper from "@material-ui/core/Paper"
 import TextField from "@material-ui/core/TextField"
-import Typography from "@material-ui/core/Typography"
-import { useCollection } from "react-firebase-hooks/firestore"
+import { Formik } from "formik"
+import { useDocumentOnce } from "react-firebase-hooks/firestore"
+import * as Yup from "yup"
 
-export default ({ firestore }) => {
-  console.log(firestore)
-  const [values, loading, error] = useCollection(firestore.collection("places"))
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    margin: theme.spacing(4),
+  },
+
+  paper: {
+    flexDirection: "column",
+    alignItems: "center",
+    padding: theme.spacing(2),
+  },
+}))
+
+const validationSchema = Yup.object({
+  name: Yup.string().required("name is required"),
+  whatsapp: Yup.boolean().default(false),
+})
+
+const Root = props => <div className={props.className}>{props.children}</div>
+
+const Profile = props => {
+  const {
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    values,
+    touched,
+  } = props
 
   return (
-    <>
-      {loading === false && (
-        <div style={{ width: "100%" }}>
-          {values.docs.map(doc => (
-            <h1 key={doc.id}>{doc.data().name}</h1>
-          ))}
+    <form onSubmit={handleSubmit}>
+      <TextField
+        fullWidth
+        name="name"
+        margin="normal"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.name}
+      />
+      <TextField
+        fullWidth
+        name="mobile"
+        margin="normal"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.mobile}
+      />
+      <FormControlLabel
+        name="whatsapp"
+        control={<Checkbox checked={values.whatsapp} />}
+        label="WhatsApp?"
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      <Button
+        fullWidth
+        disabled={isSubmitting}
+        variant="contained"
+        type="submit"
+      >
+        Submit
+      </Button>
+      <pre>{/*JSON.stringify(props, null, 2)*/}</pre>
+    </form>
+  )
+}
 
-          <Box display="flex" p={1}>
-            <Box p={1} width="100%" bgcolor="grey.300">
-              <Typography variant="h4" gutterBottom>
-                h4. Heading
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-              </Typography>
-            </Box>
-          </Box>
+export default ({ firestore }) => {
+  const classes = useStyles()
 
-          <Box display="flex" p={1}>
-            <Box p={1} width="100%" bgcolor="grey.300">
-              <TextField fullWidth label="Name" margin="normal" />
-            </Box>
-          </Box>
-        </div>
+  const uid = "1jHeyVss8f8Ivwe4dtjB"
+
+  const query = firestore.doc(`places/${uid}`)
+
+  const [document, loading, error] = useDocumentOnce(query)
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const docRef = firestore.doc(`places/${uid}`)
+    await docRef.update(values)
+    setSubmitting(false)
+  }
+
+  return (
+    <Root className={classes.root}>
+      {!loading && !error && (
+        <Paper className={classes.paper}>
+          <Formik
+            validationSchema={validationSchema}
+            initialValues={document.data()}
+            onSubmit={handleSubmit}
+            render={props => <Profile {...props} />}
+          />
+        </Paper>
       )}
-    </>
+    </Root>
   )
 }
