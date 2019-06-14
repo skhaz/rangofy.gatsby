@@ -107,6 +107,7 @@ export default ({ firestore }) => {
             render={props => <Profile {...props} />}
           />
         </Paper>
+      )}
     </Root>
   )
 }
