@@ -86,14 +86,12 @@ export default ({ firestore }) => {
 
   const uid = "1jHeyVss8f8Ivwe4dtjB"
 
-  const query = firestore.doc(`places/${uid}`)
+  const docRef = firestore.doc(`places/${uid}`)
 
-  const [document, loading, error] = useDocumentOnce(query)
+  const [document, loading, error] = useDocumentOnce(docRef)
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const docRef = firestore.doc(`places/${uid}`)
-    await docRef.update(values)
-    setTimeout(() => setSubmitting(false), 200);
+    docRef.update(values).then(() => setTimeout(() => setSubmitting(false), 200));
   }
 
   return (
