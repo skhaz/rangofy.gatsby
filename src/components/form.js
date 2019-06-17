@@ -90,8 +90,10 @@ export default ({ firestore }) => {
 
   const [document, loading, error] = useDocumentOnce(docRef)
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    docRef.update(values).then(() => setTimeout(() => setSubmitting(false), 200));
+  const handleSubmit = (values, { setSubmitting }) => {
+    return docRef
+      .update(values)
+      .then(() => setTimeout(() => setSubmitting(false), 300))
   }
 
   return (
