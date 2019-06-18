@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { makeStyles } from "@material-ui/core/styles"
+import AddIcon from "@material-ui/icons/Add"
 import Button from "@material-ui/core/Button"
 import Checkbox from "@material-ui/core/Checkbox"
+import Fab from "@material-ui/core/Fab"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Paper from "@material-ui/core/Paper"
 import TextField from "@material-ui/core/TextField"
-import { Formik } from "formik"
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { useDocumentOnce } from "react-firebase-hooks/firestore"
 import * as Yup from "yup"
 
@@ -19,6 +21,13 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     padding: theme.spacing(2),
+    margin: theme.spacing(2),
+  },
+
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
 }))
 
@@ -100,18 +109,27 @@ export default ({ firestore }) => {
     )
   }
 
+  const handleClick = () => {}
+
+  const renderInner = () => (
+    <Paper className={classes.paper}>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={document.data()}
+        onSubmit={handleSubmit}
+        render={props => <Profile {...props} />}
+      />
+    </Paper>
+  )
+
   return (
-    <Root className={classes.root}>
-      {!loading && !error && (
-        <Paper className={classes.paper}>
-          <Formik
-            validationSchema={validationSchema}
-            initialValues={document.data()}
-            onSubmit={handleSubmit}
-            render={props => <Profile {...props} />}
-          />
-        </Paper>
-      )}
-    </Root>
+    <>
+      <Root className={classes.root}>
+        {!loading && !error && renderInner()}
+      </Root>
+      <Fab color="secondary" className={classes.fab} onClick={handleClick}>
+        <AddIcon />
+      </Fab>
+    </>
   )
 }
