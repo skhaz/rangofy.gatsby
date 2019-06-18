@@ -91,7 +91,7 @@ export default ({ firestore }) => {
   const [document, loading, error] = useDocumentOnce(docRef)
 
   const handleSubmit = (values, { setSubmitting }) => {
-    docRef.update(values).then(() =>
+    docRef.update({ ...values, published: false }).then(() =>
       setTimeout(() => {
         setSubmitting(false)
       }, 300)
