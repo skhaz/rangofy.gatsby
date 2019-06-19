@@ -89,7 +89,7 @@ export default ({ firestore }) => {
 
   const [snapshot, loading, error] = useCollection(collectionRef)
 
-  const handleSubmit = ({ places }, { setSubmitting }) => {
+  const handleSubmit = async ({ places }, { setSubmitting }) => {
     const batch = firestore.batch()
 
     places.forEach(place => {
