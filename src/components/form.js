@@ -97,7 +97,7 @@ export default ({ firestore }) => {
       const { id } = clone
       delete clone.id
 
-      batch.set(firestore.doc(`places/${id}`), { ...clone }, { merge: true })
+      batch.set(collectionRe.doc(id), { ...clone }, { merge: true })
     })
 
     return batch.commit().then(
