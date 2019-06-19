@@ -4,8 +4,8 @@ import Button from "@material-ui/core/Button"
 import Fab from "@material-ui/core/Fab"
 import Paper from "@material-ui/core/Paper"
 import { Formik, Form, FieldArray } from "formik"
-import { FormikTextField } from "formik-material-fields"
-import { useCollectionOnce } from "react-firebase-hooks/firestore"
+import { FormikTextField, FormikSwitchField } from "formik-material-fields"
+import { useCollection } from "react-firebase-hooks/firestore"
 import * as Yup from "yup"
 
 const validationSchema = Yup.object({})
@@ -35,12 +35,21 @@ const Wrapper = ({ children }) => (
 
 const PlaceEntry = ({ place }) => {
   return (
-    <FormikTextField
-      fullWidth
-      name={`${place}.name`}
-      label="Name"
-      margin="normal"
-    />
+    <>
+      <FormikTextField
+        fullWidth
+        name={`${place}.name`}
+        label="Name"
+        margin="normal"
+      />
+
+      <FormikSwitchField
+        fullWidth
+        name={`${place}.whatsapp`}
+        margin="normal"
+        label="WhatsApp?"
+      />
+    </>
   )
 }
 
@@ -78,7 +87,7 @@ const PlaceArray = props => {
 export default ({ firestore }) => {
   const collectionRef = firestore.collection("places")
 
-  const [snapshot, loading, error] = useCollectionOnce(collectionRef)
+  const [snapshot, loading, error] = useCollection(collectionRef)
 
   const handleSubmit = ({ places }, { setSubmitting }) => {
     const batch = firestore.batch()
@@ -87,6 +96,7 @@ export default ({ firestore }) => {
       const clone = { ...place }
       const { id } = clone
       delete clone.id
+
       batch.set(firestore.doc(`places/${id}`), { ...clone }, { merge: true })
     })
 
@@ -97,7 +107,9 @@ export default ({ firestore }) => {
     )
   }
 
-  const handleClick = () => {}
+  const handleClick = async () => {
+    return collectionRef.doc().set({})
+  }
 
   const initialValues =
     snapshot && snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
@@ -107,6 +119,7 @@ export default ({ firestore }) => {
       <Root>
         {!loading && !error && (
           <Formik
+            enableReinitialize
             validationSchema={validationSchema}
             initialValues={{ places: initialValues }}
             onSubmit={handleSubmit}
