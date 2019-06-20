@@ -10,6 +10,8 @@ import * as Yup from "yup"
 
 const validationSchema = Yup.object({})
 
+const useForceUpdate = () => useState()[1]
+
 const Root = ({ children }) => (
   <div
     style={{
@@ -55,13 +57,10 @@ const PlaceEntry = ({ place }) => {
         margin="normal"
       />
       <FormikSwitchField
-        fullWidth
         name={`${place}.whatsapp`}
-        margin="normal"
         label="WhatsApp?"
+        margin="normal"
       />
-
-      <Button fullWidth>Cover</Button>
     </>
   )
 }
@@ -73,7 +72,7 @@ const PlaceArray = props => {
     <Form onSubmit={handleSubmit}>
       <FieldArray
         name="places"
-        render={() =>
+        render={_ =>
           values.places.map((_, index) => (
             <Wrapper key={index}>
               <PlaceEntry place={`places.${index}`} />
@@ -98,9 +97,9 @@ const PlaceArray = props => {
 }
 
 export default ({ firestore }) => {
-  const collectionRef = firestore.collection("places")
+  const placesRef = firestore.collection("places")
 
-  const [snapshot, loading, error] = useCollection(collectionRef)
+  const [snapshot, loading, error] = useCollection(placesRef)
 
   const handleSubmit = async ({ places }, { setSubmitting }) => {
     const batch = firestore.batch()
@@ -110,7 +109,7 @@ export default ({ firestore }) => {
       const { id } = clone
       delete clone.id
 
-      batch.set(collectionRef.doc(id), { ...clone }, { merge: true })
+      batch.set(placesRef.doc(id), { ...clone }, { merge: true })
     })
 
     return batch.commit().then(
@@ -121,7 +120,7 @@ export default ({ firestore }) => {
   }
 
   const handleClick = async () => {
-    return await collectionRef.doc().set({})
+    await placesRef.doc().set({})
   }
 
   const initialValues =
@@ -132,7 +131,6 @@ export default ({ firestore }) => {
       <Root>
         {!loading && !error && (
           <Formik
-            enableReinitialize
             validationSchema={validationSchema}
             initialValues={{ places: initialValues }}
             onSubmit={handleSubmit}
