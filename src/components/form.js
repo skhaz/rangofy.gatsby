@@ -121,7 +121,7 @@ export default ({ firestore }) => {
   }
 
   const handleClick = async () => {
-    return collectionRef.doc().set({})
+    return await collectionRef.doc().set({})
   }
 
   const initialValues =
