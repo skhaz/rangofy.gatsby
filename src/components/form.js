@@ -8,10 +8,6 @@ import { FormikTextField, FormikSwitchField } from "formik-material-fields"
 import { useCollection } from "react-firebase-hooks/firestore"
 import * as Yup from "yup"
 
-const validationSchema = Yup.object({})
-
-const useForceUpdate = () => useState()[1]
-
 const Root = ({ children }) => (
   <div
     style={{
@@ -120,8 +116,24 @@ export default ({ firestore }) => {
   }
 
   const handleClick = async () => {
-    await placesRef.doc().set({})
+    return placesRef.doc().set({})
   }
+
+  const validationSchema = Yup.object().shape({
+    places: Yup.array()
+      .of(
+        Yup.object().shape({
+          name: Yup.string()
+            .required()
+            .min(3),
+          address: Yup.string().required(),
+          phone: Yup.string().required(),
+          whatsapp: Yup.boolean().default(false),
+        })
+      )
+      .required("Must have at least one")
+      .min(1, "Minimum of 1 place"),
+  })
 
   const initialValues =
     snapshot && snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
