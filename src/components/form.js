@@ -102,7 +102,7 @@ export default ({ firestore }) => {
 
   const [snapshot, loading, error] = useCollection(collectionRef)
 
-  const handleSubmit = ({ places }, { setSubmitting }) => {
+  const handleSubmit = async ({ places }, { setSubmitting }) => {
     const batch = firestore.batch()
 
     places.forEach(place => {
@@ -110,7 +110,7 @@ export default ({ firestore }) => {
       const { id } = clone
       delete clone.id
 
-      batch.set(firestore.doc(`places/${id}`), { ...clone }, { merge: true })
+      batch.set(collectionRe.doc(id), { ...clone }, { merge: true })
     })
 
     return batch.commit().then(
