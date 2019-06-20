@@ -42,13 +42,26 @@ const PlaceEntry = ({ place }) => {
         label="Name"
         margin="normal"
       />
-
+      <FormikTextField
+        fullWidth
+        name={`${place}.address`}
+        label="Address"
+        margin="normal"
+      />
+      <FormikTextField
+        fullWidth
+        name={`${place}.phone`}
+        label="Phone"
+        margin="normal"
+      />
       <FormikSwitchField
         fullWidth
         name={`${place}.whatsapp`}
         margin="normal"
         label="WhatsApp?"
       />
+
+      <Button fullWidth>Cover</Button>
     </>
   )
 }
