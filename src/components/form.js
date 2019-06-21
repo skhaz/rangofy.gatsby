@@ -3,6 +3,7 @@ import AddIcon from "@material-ui/icons/Add"
 import Button from "@material-ui/core/Button"
 import Fab from "@material-ui/core/Fab"
 import Paper from "@material-ui/core/Paper"
+import Dropzone from "react-dropzone"
 import { Formik, Form, FieldArray } from "formik"
 import { FormikTextField, FormikSwitchField } from "formik-material-fields"
 import { useCollection } from "react-firebase-hooks/firestore"
@@ -30,8 +31,15 @@ const Wrapper = ({ children }) => (
     {children}
   </Paper>
 )
-
-const PlaceEntry = ({ place }) => {
+const dropzoneStyle = {
+  width: "100%",
+  height: "auto",
+  borderWidth: 2,
+  borderColor: "rgb(102, 102, 102)",
+  borderStyle: "dashed",
+  borderRadius: 5,
+}
+const PlaceEntry = ({ place, setFieldValue }) => {
   return (
     <>
       <FormikTextField
@@ -53,16 +61,34 @@ const PlaceEntry = ({ place }) => {
         margin="normal"
       />
       <FormikSwitchField
+        fullWidth
         name={`${place}.whatsapp`}
         label="WhatsApp?"
         margin="normal"
       />
+
+      <Dropzone
+        style={dropzoneStyle}
+        accept="image/*"
+        onDrop={acceptedFiles => {
+          if (acceptedFiles.length === 0) {
+            return
+          }
+
+          console.log(acceptedFiles)
+          // setFieldValue("files", values.files.concat(acceptedFiles));
+        }}
+      >
+        {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => {
+          return "ok"
+        }}
+      </Dropzone>
     </>
   )
 }
 
 const PlaceArray = props => {
-  const { values, isSubmitting, handleSubmit } = props
+  const { values, isSubmitting, handleSubmit, setFieldValue } = props
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -71,7 +97,10 @@ const PlaceArray = props => {
         render={_ =>
           values.places.map((_, index) => (
             <Wrapper key={index}>
-              <PlaceEntry place={`places.${index}`} />
+              <PlaceEntry
+                place={`places.${index}`}
+                setFieldValue={setFieldValue}
+              />
             </Wrapper>
           ))
         }
