@@ -1,4 +1,7 @@
 module.exports = {
+  siteMetadata: {
+    title: "Rangofy"
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
