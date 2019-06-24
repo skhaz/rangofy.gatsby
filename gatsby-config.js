@@ -26,8 +26,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Kioskify",
-        short_name: "Kioskify",
+        name: "Rangofy",
+        short_name: "Rangofy",
         start_url: "/",
         background_color: "#51317c",
         theme_color: "#51317c",
