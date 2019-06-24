@@ -1,4 +1,5 @@
 import React, { useCallback } from "react"
+import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import Container from "~/components/container"
 import Map from "~/components/map"
@@ -448,6 +449,11 @@ export default props => {
 
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Rangofy</title>
+        <link rel="canonical" href="https://rangofy.app/" />
+      </Helmet>
       {MemoMap}
       {MemoCarousel}
     </Container>

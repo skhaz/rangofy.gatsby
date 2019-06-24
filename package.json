@@ -31,7 +31,7 @@
     "gatsby-plugin-material-ui": "^2.0.1",
     "gatsby-plugin-netlify": "^2.0.17",
     "gatsby-plugin-offline": "^2.1.1",
-    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-react-helmet": "^3.1.0",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sharp": "^2.1.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
@@ -39,7 +39,7 @@
     "gatsby-source-contentful": "^2.0.70",
     "gatsby-source-graphql": "^2.0.18",
     "gatsby-transformer-sharp": "^2.1.21",
-    "gatsby-transformer-sqip": "^2.0.41",
+    "gatsby-transformer-sqip": "^2.1.2",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }
