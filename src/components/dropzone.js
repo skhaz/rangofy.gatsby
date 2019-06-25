@@ -41,7 +41,7 @@ const Thumbnail = styled.img`
   width: auto;
 `
 
-export default () => {
+export default ({ onDropAccepted }) => {
   const [file, setFile] = useState()
 
   useEffect(() => () => file && URL.revokeObjectURL(file.preview), [file])
@@ -61,6 +61,8 @@ export default () => {
           preview: URL.createObjectURL(file),
         })
       )
+
+      onDropAccepted(file)
     },
   })
 

@@ -60,7 +60,7 @@ const PlaceEntry = ({ place, setFieldValue }) => {
         margin="normal"
       />
 
-      <StyledDropzone />
+      <StyledDropzone onDropAccepted={() => {}} />
     </>
   )
 }
