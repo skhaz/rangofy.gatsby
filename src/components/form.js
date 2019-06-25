@@ -3,11 +3,11 @@ import AddIcon from "@material-ui/icons/Add"
 import Button from "@material-ui/core/Button"
 import Fab from "@material-ui/core/Fab"
 import Paper from "@material-ui/core/Paper"
-import Dropzone from "react-dropzone"
 import { Formik, Form, FieldArray } from "formik"
 import { FormikTextField, FormikSwitchField } from "formik-material-fields"
 import { useCollection } from "react-firebase-hooks/firestore"
 import * as Yup from "yup"
+import StyledDropzone from "./dropzone"
 
 const Root = ({ children }) => (
   <div
@@ -31,14 +31,7 @@ const Wrapper = ({ children }) => (
     {children}
   </Paper>
 )
-const dropzoneStyle = {
-  width: "100%",
-  height: "auto",
-  borderWidth: 2,
-  borderColor: "rgb(102, 102, 102)",
-  borderStyle: "dashed",
-  borderRadius: 5,
-}
+
 const PlaceEntry = ({ place, setFieldValue }) => {
   return (
     <>
@@ -67,22 +60,7 @@ const PlaceEntry = ({ place, setFieldValue }) => {
         margin="normal"
       />
 
-      <Dropzone
-        style={dropzoneStyle}
-        accept="image/*"
-        onDrop={acceptedFiles => {
-          if (acceptedFiles.length === 0) {
-            return
-          }
-
-          console.log(acceptedFiles)
-          // setFieldValue("files", values.files.concat(acceptedFiles));
-        }}
-      >
-        {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => {
-          return "ok"
-        }}
-      </Dropzone>
+      <StyledDropzone />
     </>
   )
 }
