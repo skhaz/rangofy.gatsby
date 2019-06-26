@@ -2,6 +2,7 @@ import React, { useCallback } from "react"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import Container from "~/components/container"
+import Search from "~/components/search"
 import Map from "~/components/map"
 import Carousel from "~/components/carousel"
 
@@ -431,15 +432,29 @@ export default props => {
     onMount: addMarkers(places),
   }
 
+  const MemoSearch = useCallback(
+    <div
+      style={{
+        position: "absolute",
+        top: 40,
+        left: 40,
+        right: 40,
+      }}
+    >
+      <Search />
+    </div>,
+    []
+  )
+
   const MemoMap = useCallback(<Map {...mapProps} />, [])
 
   const MemoCarousel = useCallback(
     <div
       style={{
         position: "absolute",
-        left: 38,
-        bottom: 42,
-        right: 38,
+        left: 40,
+        bottom: 40,
+        right: 40,
       }}
     >
       <Carousel places={places} />
@@ -456,6 +471,7 @@ export default props => {
       </Helmet>
       {MemoMap}
       {MemoCarousel}
+      {MemoSearch}
     </Container>
   )
 }
