@@ -41,5 +41,6 @@ module.exports = {
         pages: `${__dirname}/src/pages`,
       },
     },
+    `gatsby-plugin-styled-components`,
   ],
 }
