@@ -436,9 +436,9 @@ export default props => {
     <div
       style={{
         position: "absolute",
-        top: 40,
-        left: 40,
-        right: 40,
+        top: 20,
+        left: 20,
+        right: 20,
       }}
     >
       <Search />
@@ -452,9 +452,9 @@ export default props => {
     <div
       style={{
         position: "absolute",
-        left: 40,
-        bottom: 40,
-        right: 40,
+        bottom: 24,
+        left: 42,
+        right: 42,
       }}
     >
       <Carousel places={places} />
