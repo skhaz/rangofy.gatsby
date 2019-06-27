@@ -119,7 +119,7 @@ export default props => {
           swipeToSlide
           infinite
           centerMode
-          autoplay
+          // autoplay
           slidesToShow={numberOfSlides}
         >
           {items.map((item, index) => (
