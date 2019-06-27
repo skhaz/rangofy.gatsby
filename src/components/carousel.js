@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { debounce } from "debounce"
 import styled from "styled-components"
 import Slider from "react-slick"
 
@@ -97,11 +98,11 @@ export default props => {
   }
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       const { width } = windowDimensions()
 
       setNumberOfSlides(parseInt(width / 240, 10))
-    }
+    }, 100)
 
     handleResize()
 
