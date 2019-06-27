@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { debounce } from "debounce"
 import styled from "styled-components"
 import Slider from "react-slick"
 
@@ -98,11 +97,11 @@ export default props => {
   }
 
   useEffect(() => {
-    const handleResize = debounce(() => {
+    const handleResize = () => {
       const { width } = windowDimensions()
 
       setNumberOfSlides(parseInt(width / 240, 10))
-    }, 200)
+    }
 
     handleResize()
 
@@ -117,10 +116,11 @@ export default props => {
     <>
       {numberOfSlides && (
         <Slider
-          infinite={false}
-          dots={false}
+          swipeToSlide
+          infinite
+          centerMode
+          autoplay
           slidesToShow={numberOfSlides}
-          slidesToScroll={numberOfSlides}
         >
           {items.map((item, index) => (
             <SlideItem key={index} item={item} />
