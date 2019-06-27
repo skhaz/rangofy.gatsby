@@ -102,7 +102,7 @@ export default props => {
       const { width } = windowDimensions()
 
       setNumberOfSlides(parseInt(width / 240, 10))
-    }, 100)
+    }, 200)
 
     handleResize()
 
